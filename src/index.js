@@ -13,8 +13,16 @@ app.get("/ping", (req, res) => {
 });
 
 app.post("/hello", (req, res) => {
+  console.log(req.query); // Access Query params
   return res.json({
     message: "World",
+  });
+});
+
+app.get("/tweets/:tweet_id", (req, res) => {
+  console.log(req.params); // Access URL params
+  return res.json({
+    message: "tweet details",
   });
 });
 
