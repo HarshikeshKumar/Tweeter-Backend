@@ -18,6 +18,14 @@ function mid3(req, res, next) {
   next();
 }
 
+function commomMiddleware(req, res, next) {
+  console.log("commonMiddlewares");
+  next();
+}
+
+//  commomMiddleware apply on all routes in whole app
+app.use(commomMiddleware);
+
 let middlewares = [mid1, mid2, mid3];
 
 app.get("/ping", middlewares, (req, res) => {
