@@ -8,7 +8,17 @@ function mid1(req, res, next) {
   next();
 }
 
-app.get("/ping", mid1, (req, res) => {
+function mid2(req, res, next) {
+  console.log("mid2");
+  next();
+}
+
+function mid3(req, res, next) {
+  console.log("mid3");
+  next();
+}
+
+app.get("/ping", [mid1, mid2, mid3], (req, res) => {
   return res.json({
     message: "Pong",
   });
