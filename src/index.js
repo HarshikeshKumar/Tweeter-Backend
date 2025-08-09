@@ -6,6 +6,10 @@ const app = express();
 
 app.use(morgan("combined"));
 
+app.use(express.json());
+app.use(express.urlencoded());
+app.use(express.text());
+
 app.get("/ping", (req, res) => {
   return res.json({
     message: "Pong",
@@ -14,6 +18,7 @@ app.get("/ping", (req, res) => {
 
 app.post("/hello", (req, res) => {
   console.log(req.query); // Access Query params
+  console.log(req.body); // Access from body
   return res.json({
     message: "World",
   });
