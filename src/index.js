@@ -1,40 +1,18 @@
 import express from "express";
+import morgan from "morgan";
 
 // Create a app object
 const app = express();
 
-function mid1(req, res, next) {
-  console.log("mid1");
-  next();
-}
+app.use(morgan("combined"));
 
-function mid2(req, res, next) {
-  console.log("mid2");
-  next();
-}
-
-function mid3(req, res, next) {
-  console.log("mid3");
-  next();
-}
-
-function commomMiddleware(req, res, next) {
-  console.log("commonMiddlewares");
-  next();
-}
-
-//  commomMiddleware apply on all routes in whole app
-app.use(commomMiddleware);
-
-let middlewares = [mid1, mid2, mid3];
-
-app.get("/ping", middlewares, (req, res) => {
+app.get("/ping", (req, res) => {
   return res.json({
     message: "Pong",
   });
 });
 
-app.post("/hello", [mid1, mid3], (req, res) => {
+app.post("/hello", (req, res) => {
   return res.json({
     message: "World",
   });
