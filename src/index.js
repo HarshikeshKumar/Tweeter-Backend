@@ -31,6 +31,12 @@ app.get("/tweets/:tweet_id", (req, res) => {
   });
 });
 
+app.all(/.*/, (req, res) => {
+  return res.status(404).json({
+    message: "Not Found",
+  });
+});
+
 // Define a PORT and attach it to the express app
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
