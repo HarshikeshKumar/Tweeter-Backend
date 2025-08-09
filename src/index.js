@@ -18,13 +18,15 @@ function mid3(req, res, next) {
   next();
 }
 
-app.get("/ping", [mid1, mid2, mid3], (req, res) => {
+let middlewares = [mid1, mid2, mid3];
+
+app.get("/ping", middlewares, (req, res) => {
   return res.json({
     message: "Pong",
   });
 });
 
-app.post("/hello", (req, res) => {
+app.post("/hello", [mid1, mid3], (req, res) => {
   return res.json({
     message: "World",
   });
