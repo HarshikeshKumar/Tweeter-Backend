@@ -9,6 +9,12 @@ app.get("/ping", (req, res) => {
   });
 });
 
+app.post("/hello", (req, res) => {
+  return res.json({
+    message: "World",
+  });
+});
+
 // Define a PORT and attach it to the express app
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
