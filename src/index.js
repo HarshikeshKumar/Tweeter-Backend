@@ -3,7 +3,12 @@ import express from "express";
 // Create a app object
 const app = express();
 
-app.get("/ping", (req, res) => {
+function mid1(req, res, next) {
+  console.log("mid1");
+  next();
+}
+
+app.get("/ping", mid1, (req, res) => {
   return res.json({
     message: "Pong",
   });
