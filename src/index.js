@@ -1,7 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import { PORT } from "./config/serverConfig.js";
-import tweetRouter from "./routes/tweet.js";
+import apiRouter from "./routes/apiRoutes.js";
 
 // Create a app object
 const app = express();
@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.text());
 
-app.use("/tweets", tweetRouter); // http://localhost:3000/tweets
+app.use("/api", apiRouter); // If the request url starts with /api, use the apiRouter
 
 app.get("/", (req, res) => {
   return res.json({
