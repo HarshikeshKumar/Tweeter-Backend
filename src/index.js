@@ -1,5 +1,6 @@
 import express from "express";
 import morgan from "morgan";
+import { PORT } from "./config/serverConfig.js";
 
 // Create a app object
 const app = express();
@@ -10,24 +11,15 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.text());
 
+app.get("/", (req, res) => {
+  return res.json({
+    message: "Welcome to Home Page",
+  });
+});
+
 app.get("/ping", (req, res) => {
   return res.json({
     message: "Pong",
-  });
-});
-
-app.post("/hello", (req, res) => {
-  console.log(req.query); // Access Query params
-  console.log(req.body); // Access from body
-  return res.json({
-    message: "World",
-  });
-});
-
-app.get("/tweets/:tweet_id", (req, res) => {
-  console.log(req.params); // Access URL params
-  return res.json({
-    message: "tweet details",
   });
 });
 
@@ -38,6 +30,6 @@ app.all(/.*/, (req, res) => {
 });
 
 // Define a PORT and attach it to the express app
-app.listen(3000, () => {
-  console.log("Server is running on port 3000");
+app.listen(PORT, () => {
+  console.log(`Server is running on PORT: ${PORT}`);
 });
