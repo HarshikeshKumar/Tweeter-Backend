@@ -1,11 +1,8 @@
 import express from "express";
-import tweetRouter from "./tweet.js";
-import commentRouter from "./comment.js";
+import v1Router from "./v1/v1Routes.js";
 
 const router = express.Router();
 
-router.use("/tweets", tweetRouter); // If the remaining req url starts with /tweets, use tweetRouter
-
-router.use("/comments", commentRouter);
+router.use("/v1", v1Router);
 
 export default router;
