@@ -9,7 +9,7 @@ const app = express();
 app.use(morgan("combined"));
 
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.text());
 
 app.use("/api", apiRouter); // If the request url starts with /api, use the apiRouter
